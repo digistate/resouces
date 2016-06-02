@@ -47,14 +47,15 @@
       if($.inArray(hash, filters) !== -1) {
         reload($container, $("." + hash));
       }
-    }
+    };
 
     var proc = function($container){
-      $(options.filtersGroupSelector).find('input[type="checkbox"]').each(function(){
+      var btns = $(options.filtersGroupSelector).find('input[type="checkbox"]');
+      btns.each(function(){
         $(this).change(function(){
           var selector = [];
-          $(options.filtersGroupSelector).find('input[type="checkbox"]').each( function() {
-            $(options.filtersGroupSelector).children().removeClass('selected');
+          btns.removeClass('selected');
+          btns.each( function() {
             if ( $(this).is(':checked') ) {
               $(this).addClass("selected");
               selector.push( "." + $(this).val() );
@@ -70,9 +71,10 @@
     };
 
     var procUL = function($container){
-      $(options.filtersGroupSelector).children().each(function(){
+      var btns = $(options.filtersGroupSelector).children();
+      btns.each(function(){
         $(this).click(function(){
-          $(options.filtersGroupSelector).children().removeClass('selected');
+          btns.removeClass('selected');
           window.location.hash = $(this).data("filter");
           var selector = [];
           selector.push( "." + $(this).data("filter") );
@@ -86,7 +88,7 @@
       });
 
       hashFilter($container);
-      $(options.filtersGroupSelector).children().removeClass('selected');
+      btns.removeClass('selected');
       $('.filters li[data-filter="'+window.location.hash.replace("#", "")+'"]').addClass("selected");
     };
 
