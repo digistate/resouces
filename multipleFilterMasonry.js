@@ -4,9 +4,9 @@
     var cache=[];
     var filters = [];
 
-    if(options.selectorType === 'list') {
+    if(options.selectorType === "list") {
       $(options.filtersGroupSelector).children().each(function() {
-        filters.push($(this).data('filter'));
+        filters.push($(this).data("filter"));
       });
     }
 
@@ -37,7 +37,7 @@
       $(items).each(function(){
         $($container).append($(this));
       });
-      $container.masonry('reloadItems');
+      $container.masonry("reloadItems");
       $container.masonry();
     };
 
@@ -45,17 +45,17 @@
     var hashFilter = function($container) {
       var hash = window.location.hash.replace("#", "");
       if($.inArray(hash, filters) !== -1) {
-        reload($container, $('.' + hash));
+        reload($container, $("." + hash));
       }
     }
 
     var proc = function($container){
-      $(options.filtersGroupSelector).find('input[type=checkbox]').each(function(){
+      $(options.filtersGroupSelector).find("input[type=checkbox]").each(function(){
         $(this).change(function(){
           var selector = [];
-          $(options.filtersGroupSelector).find('input[type=checkbox]').each( function() {
+          $(options.filtersGroupSelector).find("input[type=checkbox]").each( function() {
             if ( $(this).is(':checked') ) {
-              selector.push( '.' + $(this).val() );
+              selector.push( "." + $(this).val() );
             }
           });
           var items = cache;
@@ -71,10 +71,10 @@
       $(options.filtersGroupSelector).children().each(function(){
         $(this).click(function(){
           $(options.filtersGroupSelector).children().removeClass('selected');
-          window.location.hash = $(this).data('filter');
+          window.location.hash = $(this).data("filter");
           var selector = [];
-          selector.push( '.' + $(this).data('filter') );
-          $(this).addClass('selected');
+          selector.push( "." + $(this).data("filter") );
+          $(this).addClass("selected");
           var items = cache;
           if (selector.length > 0) {
             items = filterItems(selector);
@@ -85,13 +85,13 @@
 
       hashFilter($container);
       $(options.filtersGroupSelector).children().removeClass('selected');
-      $('.filters li[data-filter='+window.location.hash.replace("#", "")+']').addClass('selected');
+      $('.filters li[data-filter='+window.location.hash.replace("#", "")+"]").addClass("selected");
     };
 
     return this.each(function() {
       var $$ = $(this);
       init($$);
-      options.selectorType === 'list' ? procUL($$) : proc($$);
+      options.selectorType === "list" ? procUL($$) : proc($$);
     });
   };
 }(window.jQuery));
