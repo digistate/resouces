@@ -50,10 +50,10 @@
     }
 
     var proc = function($container){
-      $(options.filtersGroupSelector).find("input[type=checkbox]").each(function(){
+      $(options.filtersGroupSelector).find('input[type="checkbox"]').each(function(){
         $(this).change(function(){
           var selector = [];
-          $(options.filtersGroupSelector).find("input[type=checkbox]").each( function() {
+          $(options.filtersGroupSelector).find('input[type="checkbox"]').each( function() {
             if ( $(this).is(':checked') ) {
               selector.push( "." + $(this).val() );
             }
@@ -85,7 +85,7 @@
 
       hashFilter($container);
       $(options.filtersGroupSelector).children().removeClass('selected');
-      $('.filters li[data-filter='+window.location.hash.replace("#", "")+"]").addClass("selected");
+      $('.filters li[data-filter="'+window.location.hash.replace("#", "")+'"]').addClass("selected");
     };
 
     return this.each(function() {
