@@ -54,7 +54,9 @@
         $(this).change(function(){
           var selector = [];
           $(options.filtersGroupSelector).find('input[type="checkbox"]').each( function() {
+            $(options.filtersGroupSelector).children().removeClass('selected');
             if ( $(this).is(':checked') ) {
+              $(this).addClass("selected");
               selector.push( "." + $(this).val() );
             }
           });
